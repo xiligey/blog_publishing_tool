@@ -92,7 +92,8 @@ class CSDNBlogSender(BlogSender):
         for a, b in cookie.items():
             jar.set(a, b)
         session.cookies.update(jar)
-        print(session.post(url, data=self.data, allow_redirects=False).json())
+        response = session.post(url, data=self.data, allow_redirects=False)
+        print(response.status_code)
 
     @staticmethod
     def parse_cookie_string(cookie_string):
@@ -112,7 +113,7 @@ class CSDNBlogSender(BlogSender):
 
 if __name__ == '__main__':
     from config import websites
-    blog_path = "/Users/chenxilin/Code/Python/Machine_Learning/Machine_Learning_And_Deep_Learning_Theories/docs/层次聚类.md"
+    blog_path = "/Users/chenxilin/Desktop/Study/Spider/blog_publishing_tool/README.md"
 
     if "csdn" in websites:
         blog = CSDNBlogSender()
